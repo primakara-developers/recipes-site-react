@@ -1,45 +1,42 @@
-import { useState } from "react";
-import logo from "@/assets/logo.svg";
-import "./home.css";
+import { useState, useEffect } from "react";
+import foodAPI from "@/api/foodAPI";
+import Card from "@/components/Card";
+import Search from "@/components/Search";
 
-function Home() {
-  const [count, setCount] = useState(0);
+export default function Home() {
+  const [categoryData, setCategoryData] = useState([]);
+
+  async function getCategoryData() {
+    // emit("loadingStatus", true);
+    const payload = await foodAPI("/categories.php", "GET");
+    setCategoryData(payload.categories);
+    // emit("loadingStatus", false);
+  }
+
+  useEffect(() => {
+    getCategoryData();
+  });
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className="container d-flex flex-column justify-content-center">
+      {/* Search Section */}
+      <p className="text-center fs-1 fw-bold text-primary mt-5">Food Recipes</p>
+      <Search />
+
+      {/* Card List Section  */}
+      <div className="row row-cols-1 row-cols-md-5 g-4 mt-3">
+        {categoryData.map((data, index) => {
+          return (
+            <Card
+              key={data.idCategory}
+              category={data.strCategory}
+              description={data.strCategoryDescription}
+              image={data.strCategoryThumb}
+              link={`/recipe/${data.strCategory}`}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
-
-export default Home;
