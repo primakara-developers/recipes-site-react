@@ -4,16 +4,15 @@ export default function Header() {
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <Link to="/" className="navbar-brand text-primary fw-bold">
+        <router-link to="/" className="navbar-brand text-success fw-bold">
           <img
             src="https://cdn-icons-png.flaticon.com/512/6108/6108476.png"
             alt=""
             width="30"
             height="24"
-            className="me-2"
           />
           Recipes Page
-        </Link>
+        </router-link>
         <button
           className="navbar-toggler"
           type="button"
@@ -27,10 +26,10 @@ export default function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ms-auto">
-            <Link to="/" className="nav-link text-primary">
+            <Link to="/" className="nav-link text-success">
               Home
             </Link>
-            <Link to="/about" className="nav-link text-primary">
+            <Link to="/about" className="nav-link text-success">
               About
             </Link>
           </div>

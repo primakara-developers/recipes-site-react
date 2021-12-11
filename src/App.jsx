@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./containers/Home";
-import About from "./containers/About";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Home from "@/containers/Home";
+import About from "@/containers/About";
 
-export default function App() {
+import Header from "./components/Header";
+
+function App() {
   return (
     <div>
       <Header />
@@ -13,7 +13,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
       </Routes>
-      <Footer />
     </div>
   );
 }
+
+export default App;

@@ -20,7 +20,7 @@ export default function Search() {
         />
       </div>
       <div className="col-12 col-md-2 mt-2 mt-md-0">
-        <button type="submit" className="btn btn-outline-primary btn-lg w-100">
+        <button type="submit" className="btn btn-outline-success btn-lg w-100">
           🔍 Search
         </button>
       </div>
